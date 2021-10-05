@@ -50,7 +50,28 @@ exports.createProduct = (req, res) => {
     .catch(err => res.status(500).send(err))
 }
 
-// updateProduct
+exports.updateProduct = (req, res) => {
+  const { productId } = req.params
+  let newUpdates = {}
+  if(req.body.sizes) newUpdates.sizes = req.body.sizes
+  if(req.body.brand) newUpdates.brand = req.body.brand
+  if(req.body.color) newUpdates.color = req.body.color
+  if(req.body.style) newUpdates.style = req.body.style
+  if(req.body.sku) newUpdates.sku = req.body.sku
+  if(req.body.type) newUpdates.type = req.body.type
+  if(req.body.price) newUpdates.price = Number(req.body.price.toFixed(2))
+  if(req.body.graphic.toString()) newUpdates.graphic = req.body.graphic
+  const db = connectDb()
+  db.collection('clothes').doc(productId).update(newUpdates)
+    .then(() => res.status(202).send({ message: 'updated' }))
+    .catch(err => res.status(500).send(err))
+}
 
-// deleteProduct
+exports.deleteProduct = (req, res) => {
+  const { productId } = req.params
+  const db = connectDb()
+  db.collection('clothes').doc(productId).delete()
+    .then(() => res.status(202).send({ message: 'deleted' }))
+    .catch(err => res.status(500).send(err))
+}
 
