@@ -6,6 +6,8 @@ const { getAllProducts, getProductById, createProduct, updateProduct, deleteProd
 const app = express()
 app.use(cors())
 
+app.get('/checkout', (req, res) => res.send('Checkout in progress'))
+
 app.get('/products/:productId', getProductById)
 app.get('/products', getAllProducts)
 app.post('/products', createProduct)
