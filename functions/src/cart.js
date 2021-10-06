@@ -1,14 +1,15 @@
 const { connectDb } = require("./db");
 
 exports.createCartItem = (req, res) => {
-  if (!req.body.orderNum || !req.body.itemsNum || !req.body.totalPrice) {
+  if (!req.body.customerId || !req.body.productId || !req.body.qty|| !req.body.totalPrice) {
     res.status(401).send({ message: "Invalid request" });
     return;
   }
   let newItem = {
-    sku: Number(req.body.totalPrice.toFixed(2)),
-    type: req.body.items,
-    orderNum: req.body.orderNum,
+    customerId: req.body.customerId,
+    productId: req.body.productId,
+    totalPrice: Number(req.body.totalPrice.toFixed(2)),
+    qty: req.body.qty,
   };
   const db = connectDb();
   db.collection("cart")
@@ -16,3 +17,4 @@ exports.createCartItem = (req, res) => {
     .then((docRef) => res.status(201).send({ id: docRef.id }))
     .catch((err) => res.status(500).send(err));
 };
+
