@@ -5,6 +5,9 @@ exports.createCartItem = (req, res) => {
     res.status(401).send({ message: "Invalid request" });
     return;
   }
+
+
+  
   let newItem = {
     customerId: req.body.customerId,
     productId: req.body.productId,
@@ -38,4 +41,16 @@ exports.getAllCartItems = (req, res) => {
     })
     res.send(allCartItems)
   })
+}
+
+exports.getCartItemById = (req, res) => {
+  const db = connectDb()
+  const {cartId} = req.params
+  db.collection("cart").doc(cartId).get()
+    .then(doc => {
+        let item = doc.data()
+        item.id = doc.id
+        res.send(item)
+    })
+     .catch(err => res.status(500).send(err))
 }
