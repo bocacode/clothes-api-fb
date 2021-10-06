@@ -1,6 +1,6 @@
 const { connectDb } = require("./db")
 
-exports.getCartOrderById = (req, res) => {
+exports.getCartItemById = (req, res) => {
     const db = connectDb()
     const { cartItemId } = req.params
 

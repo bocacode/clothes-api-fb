@@ -2,12 +2,12 @@ const functions = require("firebase-functions")
 const express = require('express')
 const cors = require('cors')
 const { getAllProducts, getProductById, createProduct, updateProduct, deleteProduct } = require('./src/products')
-const { getCartOrderById } = require("./src/orders")
+const { getCartItemById } = require("./src/orders")
 
 const app = express()
 app.use(cors())
 
-app.get('/orders/:cartItemId', getCartOrderById)
+app.get('/orders/:cartItemId', getCartItemById)
 
 app.get('/products/:productId', getProductById)
 app.get('/products', getAllProducts)
