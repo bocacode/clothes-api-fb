@@ -1,7 +1,7 @@
 const functions = require("firebase-functions")
 const express = require('express')
 const cors = require('cors')
-const { getAllProducts, getProductById, createProduct, updateProduct, deleteProduct, deleteCartItem } = require('./src/products')
+const { getAllProducts, getProductById, createProduct, updateProduct, deleteProduct} = require('./src/products')
 const { deleteCartItem } = require("./src/cart")
 
 const app = express()

@@ -3,7 +3,7 @@ const {connectDb} = require('./db')
 exports.deleteCartItem = (req, res) => {
   const { itemId } = req.params;
   const db = connectDb();
-  db.collection('orders')
+  db.collection('cart')
     .doc(itemId)
     .delete()
     .then(() => res.status(202).send({ message: "deleted" }))
