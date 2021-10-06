@@ -13,7 +13,7 @@ app.get('/products', getAllProducts)
 app.post('/products', createProduct)
 app.patch('/products/:productId', updateProduct)
 app.delete('/products/:productId', deleteProduct)
-app.patch('/cart/:qtyId',updateCart )
+app.patch('/cart/:cartId',updateCart )
 
 
 exports.app = functions.https.onRequest(app)
