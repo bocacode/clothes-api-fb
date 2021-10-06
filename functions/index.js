@@ -20,5 +20,4 @@ app.post('/products', createProduct)
 app.patch('/products/:productId', updateProduct)
 app.delete('/products/:productId', deleteProduct)
 
-
 exports.app = functions.https.onRequest(app)
