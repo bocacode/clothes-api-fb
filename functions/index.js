@@ -4,6 +4,7 @@ const cors = require('cors')
 const { getAllProducts, getProductById, createProduct, updateProduct, deleteProduct } = require('./src/products')
 const { getCartItemById } = require("./src/orders")
 const { createCartItem, getAllCartItems, updateCart, deleteCartItem } = require('./src/cart')
+const { getCustomers } = require('./src/customers')
 
 const app = express()
 app.use(cors())
@@ -20,5 +21,7 @@ app.get('/products', getAllProducts)
 app.post('/products', createProduct)
 app.patch('/products/:productId', updateProduct)
 app.delete('/products/:productId', deleteProduct)
+
+app.get('/customers', getCustomers)
 
 exports.app = functions.https.onRequest(app)
